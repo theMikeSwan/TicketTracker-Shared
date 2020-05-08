@@ -10,21 +10,71 @@ import XCTest
 
 class TicketTests: XCTestCase {
 
+    var ticket: Ticket?
+    let hermoine = User(name: "Hermione Granger", email: "Hermione.Granger@hogwarts.edu", tickets: [Ticket]())
+    let ron = User(name: "Ron Weasley", email: "Ronald.Weasley@hogwarts.edu", tickets: [Ticket]())
+    let date = Date()
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        ticket = Ticket(summary: "My homework sucks", detail: "Please write it for me!", type: .story, reporter: ron, asignee: hermoine, size: "3", status: .todo, dateCreated: date, comments: [Comment](), history: [TicketHistory]())
     }
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    func testTicketCreation() throws {
+        guard let ticket = ticket else {
+            XCTFail("Ticket was not created at all!")
+            return
+        }
+        XCTAssertEqual(ticket.summary, "My homework sucks")
+        XCTAssertEqual(ticket.detail, "Please write it for me!")
+        XCTAssertEqual(ticket.type, .story)
+        XCTAssertEqual(ticket.reporter.name, ron.name)
+        XCTAssertEqual(ticket.asignee.name, hermoine.name)
+        XCTAssertEqual(ticket.size, "3")
+        XCTAssertEqual(ticket.status, .todo)
+        XCTAssertEqual(ticket.dateCreated, date)
+        XCTAssertEqual(ticket.comments.count, 0)
+        XCTAssertEqual(ticket.history.count, 0)
+    }
+    
+    func testNewStatusAddsToHistory() throws {
+        guard var ticket = ticket else {
+            XCTFail("Ticket was not created at all!")
+            return
+        }
+        XCTAssertEqual(ticket.history.count, 0)
+        ticket.status = .inProgress
+        XCTAssertEqual(ticket.history.count, 1)
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testChangeAsignee() throws {
+        guard var ticket = ticket else {
+            XCTFail("Ticket was not created at all!")
+            return
+        }
+        XCTAssertEqual(ticket.asignee.name, hermoine.name)
+        ticket.asignee = ron
+        XCTAssertEqual(ticket.asignee.name, ron.name)
     }
-
+    
+    func testAddRemoveComments() throws {
+        guard var ticket = ticket else {
+            XCTFail("Ticket was not created at all!")
+            return
+        }
+        let contents = "I hope you're pleased with yourselves. We could have been killed - or worse, expelled."
+        let comment = Comment(user: hermoine, contents: contents)
+        
+        XCTAssertEqual(ticket.comments.count, 0)
+        ticket.comments.append(comment)
+        XCTAssertEqual(ticket.comments.count, 1)
+        ticket.comments.remove(at: 0)
+        XCTAssertEqual(ticket.comments.count, 0)
+    }
+    
     static var allTests = [
-        ("testExample", testExample),
+        ("testTicketCreation", testTicketCreation),
+        ("testNewStatusAddsToHistory", testNewStatusAddsToHistory),
+        ("testChangeAsignee", testChangeAsignee),
+        ("testAddRemoveComments", testAddRemoveComments),
     ]
 
 }

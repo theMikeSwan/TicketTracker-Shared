@@ -11,5 +11,5 @@ public struct Sprint: Codable {
     public let name: String
     public let startDate: Date
     public let endDate: Date
-    public let tickets: [Ticket]
+    public var tickets: [Ticket]
 }

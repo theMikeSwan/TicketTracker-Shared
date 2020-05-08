@@ -8,14 +8,19 @@
 import Foundation
 
 public struct Ticket: Codable {
-    public let summary: String
-    public let detail: String
-    public let type: TicketType
+    public var summary: String
+    public var detail: String
+    public var type: TicketType
     public let reporter: User
-    public let asignee: User
-    public let size: String
-    public let status: TicketStatus
+    public var asignee: User
+    public var size: String
+    public var status: TicketStatus {
+        didSet {
+            let newHistory = TicketHistory(date: Date(), status: status)
+            history.append(newHistory)
+        }
+    }
     public let dateCreated: Date
-    public let comments: [String]
-    public let history: [TicketHistory]
+    public var comments: [Comment]
+    public var history: [TicketHistory]
 }

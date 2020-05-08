@@ -10,21 +10,16 @@ import XCTest
 
 class CommentTests: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testCommentCreation() throws {
+        let user = User(name: "Hermione Granger", email: "Hermione.Granger@hogwarts.edu", tickets: [Ticket]())
+        let contents = "I hope you're pleased with yourselves. We could have been killed - or worse, expelled."
+        let comment = Comment(user: user, contents: contents)
+        XCTAssertEqual(comment.user.name, user.name)
+        XCTAssertEqual(comment.contents, contents)
     }
 
     static var allTests = [
-        ("testExample", testExample),
+        ("testCommentCreation", testCommentCreation),
     ]
 
 }
