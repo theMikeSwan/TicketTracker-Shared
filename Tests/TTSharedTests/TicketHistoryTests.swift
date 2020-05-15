@@ -13,7 +13,7 @@ class TicketHistoryTests: XCTestCase {
 
     func testTicketHistoryCreation() throws {
         let date = Date()
-        let history = TicketHistory(date: date, status: .todo)
+        let history = TicketHistory(id: nil, date: date, status: .todo)
         XCTAssertEqual(history.date, date)
         XCTAssertEqual(history.status, TicketStatus.todo)
     }

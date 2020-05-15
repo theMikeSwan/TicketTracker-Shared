@@ -8,6 +8,13 @@
 import Foundation
 
 public struct TicketHistory: Codable {
+    public let id: UUID?
     public let date: Date
     public let status: TicketStatus
+    
+    internal init(id: UUID?, date: Date = Date(), status: TicketStatus) {
+        self.id = id
+        self.date = date
+        self.status = status
+    }
 }

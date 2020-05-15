@@ -8,6 +8,16 @@
 import Foundation
 
 public struct Comment: Codable {
+    public let id: UUID?
     public let user: User
     public let contents: String
+    public let date: Date
+    
+    public init(id: UUID?, user: User, contents: String, date: Date = Date()) {
+        self.id = id
+        self.user = user
+        self.contents = contents
+        self.date = date
+    }
+
 }

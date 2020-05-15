@@ -11,16 +11,16 @@ import XCTest
 class UserTests: XCTestCase {
 
     func testUserCreation() throws {
-        let user = User(name: "Hermione Granger", email: "Hermione.Granger@hogwarts.edu", tickets: [Ticket]())
+        let user = User(id: nil, name: "Hermione Granger", email: "Hermione.Granger@hogwarts.edu")
         XCTAssertEqual(user.name, "Hermione Granger")
         XCTAssertEqual(user.email, "Hermione.Granger@hogwarts.edu")
         XCTAssertEqual(user.tickets.count, 0)
     }
     
     func testAddRemoveTickets() throws {
-        var user = User(name: "Hermione Granger", email: "Hermione.Granger@hogwarts.edu", tickets: [Ticket]())
+        var user = User(id: nil, name: "Hermione Granger", email: "Hermione.Granger@hogwarts.edu")
         
-        let ticket = Ticket(summary: "Sample Ticket", detail: "No details of mention", type: .saga, reporter: user, asignee: user, size: "Large", status: .todo, dateCreated: Date(), comments: [Comment](), history: [TicketHistory]())
+        let ticket = Ticket(id: nil, number: "T-001", summary: "Sample Ticket", detail: "No details of mention", type: .saga, reporter: user, asignee: user, size: "Large", status: .todo)
         
         XCTAssertEqual(user.tickets.count, 0)
         user.tickets.append(ticket)
