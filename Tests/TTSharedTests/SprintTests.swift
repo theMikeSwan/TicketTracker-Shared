@@ -16,7 +16,7 @@ class SprintTests: XCTestCase {
         // We just want to see two dates that are not the same so this method works fine here.
         // Never use it in production code though, it will screw you at some point.
         let endDate = startDate.addingTimeInterval(1_209_600)
-        let sprint = Sprint(name: "Sprint 2020-1", startDate: startDate, endDate: endDate, tickets: [Ticket]())
+        let sprint = Sprint(id: nil, name: "Sprint 2020-1", startDate: startDate, endDate: endDate)
         
         XCTAssertEqual(sprint.name, "Sprint 2020-1")
         XCTAssertEqual(sprint.startDate, startDate)
@@ -27,12 +27,12 @@ class SprintTests: XCTestCase {
     func testAddRemoveTickets() throws {
         let startDate = Date()
         let endDate = startDate.addingTimeInterval(1_209_600)
-        var sprint = Sprint(name: "Sprint 2020-1", startDate: startDate, endDate: endDate, tickets: [Ticket]())
+        var sprint = Sprint(id: nil, name: "Sprint 2020-1", startDate: startDate, endDate: endDate)
         
-        let user = User(name: "Hermione Granger", email: "Hermione.Granger@hogwarts.edu", tickets: [Ticket]())
+        let user = User(id: nil, name: "Hermione Granger", email: "Hermione.Granger@hogwarts.edu")
         
         XCTAssertEqual(sprint.tickets.count, 0)
-        let ticket = Ticket(summary: "Sample Ticket", detail: "No details of mention", type: .saga, reporter: user, asignee: user, size: "Large", status: .todo, dateCreated: Date(), comments: [Comment](), history: [TicketHistory]())
+        let ticket = Ticket(id: nil, number: "T_001", summary: "Sample Ticket", detail: "No details of mention", type: .saga, reporter: user, asignee: user, size: "Large", status: .todo)
         sprint.tickets.append(ticket)
         XCTAssertEqual(sprint.tickets.count, 1)
         sprint.tickets.remove(at: 0)

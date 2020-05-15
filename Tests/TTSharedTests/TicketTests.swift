@@ -11,11 +11,11 @@ import XCTest
 class TicketTests: XCTestCase {
 
     var ticket: Ticket?
-    let hermoine = User(name: "Hermione Granger", email: "Hermione.Granger@hogwarts.edu", tickets: [Ticket]())
-    let ron = User(name: "Ron Weasley", email: "Ronald.Weasley@hogwarts.edu", tickets: [Ticket]())
+    let hermoine = User(id: nil, name: "Hermione Granger", email: "Hermione.Granger@hogwarts.edu")
+    let ron = User(id: nil, name: "Ron Weasley", email: "Ronald.Weasley@hogwarts.edu")
     let date = Date()
     override func setUpWithError() throws {
-        ticket = Ticket(summary: "My homework sucks", detail: "Please write it for me!", type: .story, reporter: ron, asignee: hermoine, size: "3", status: .todo, dateCreated: date, comments: [Comment](), history: [TicketHistory]())
+        ticket = Ticket(id: nil, number: "T-001", summary: "My homework sucks", detail: "Please write it for me!", type: .story, reporter: ron, asignee: hermoine, size: "3", status: .todo, dateCreated: date)
     }
 
     func testTicketCreation() throws {
@@ -61,7 +61,7 @@ class TicketTests: XCTestCase {
             return
         }
         let contents = "I hope you're pleased with yourselves. We could have been killed - or worse, expelled."
-        let comment = Comment(user: hermoine, contents: contents)
+        let comment = Comment(id: nil, user: hermoine, contents: contents)
         
         XCTAssertEqual(ticket.comments.count, 0)
         ticket.comments.append(comment)
