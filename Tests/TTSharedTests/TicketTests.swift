@@ -36,7 +36,7 @@ class TicketTests: XCTestCase {
     }
     
     func testNewStatusAddsToHistory() throws {
-        guard var ticket = ticket else {
+        guard let ticket = ticket else {
             XCTFail("Ticket was not created at all!")
             return
         }
@@ -46,7 +46,7 @@ class TicketTests: XCTestCase {
     }
 
     func testChangeAsignee() throws {
-        guard var ticket = ticket else {
+        guard let ticket = ticket else {
             XCTFail("Ticket was not created at all!")
             return
         }
@@ -56,7 +56,7 @@ class TicketTests: XCTestCase {
     }
     
     func testAddRemoveComments() throws {
-        guard var ticket = ticket else {
+        guard let ticket = ticket else {
             XCTFail("Ticket was not created at all!")
             return
         }

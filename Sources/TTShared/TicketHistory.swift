@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct TicketHistory: Codable {
+public class TicketHistory: Codable {
     public let id: UUID?
     public let date: Date
     public let status: TicketStatus

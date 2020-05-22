@@ -27,7 +27,7 @@ class SprintTests: XCTestCase {
     func testAddRemoveTickets() throws {
         let startDate = Date()
         let endDate = startDate.addingTimeInterval(1_209_600)
-        var sprint = Sprint(id: nil, name: "Sprint 2020-1", startDate: startDate, endDate: endDate)
+        let sprint = Sprint(id: nil, name: "Sprint 2020-1", startDate: startDate, endDate: endDate)
         
         let user = User(id: nil, name: "Hermione Granger", email: "Hermione.Granger@hogwarts.edu")
         
