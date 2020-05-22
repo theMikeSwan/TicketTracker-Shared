@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Ticket: Codable {
+public class Ticket: Codable {
     public let id: UUID?
     public let number: String
     public var summary: String

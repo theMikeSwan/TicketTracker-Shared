@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Sprint: Codable {
+public class Sprint: Codable {
        
     public let id: UUID?
     public let name: String
