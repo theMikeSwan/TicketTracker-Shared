@@ -1,3 +1,3 @@
 # TTShared
 
-A description of this package.
+Contains the shared data types for TicketTracker.
