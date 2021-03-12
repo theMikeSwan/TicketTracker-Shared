@@ -16,10 +16,9 @@ public final class TicketDTO: Codable {
     public var size: String
     public let dateCreated: Date
     public var status: TicketStatus
-    public var history: [TicketHistoryDTO]
     public let type: TicketType
     
-    public init(id: UUID?, number: String, summary: String, detail: String, size: String, dateCreated: Date = Date(), status: TicketStatus, history: [TicketHistoryDTO] = [TicketHistoryDTO](), type: TicketType) {
+    public init(id: UUID?, number: String, summary: String, detail: String, size: String, dateCreated: Date = Date(), status: TicketStatus, type: TicketType) {
         self.id = id
         self.number = number
         self.summary = summary
@@ -27,7 +26,6 @@ public final class TicketDTO: Codable {
         self.size = size
         self.dateCreated = dateCreated
         self.status = status
-        self.history = history
         self.type = type
     }
 }
