@@ -15,11 +15,12 @@ class TicketTests: XCTestCase {
     let ticketNumber = "T-001"
     let summary = "My homework sucks"
     let detail = "Please write it for me!"
-    let type: TicketType = .story
+    let type: TicketType = TicketType.allCases.randomElement()!
     let size = "3"
-    let status: TicketStatus = .todo
+    let status: TicketStatus = TicketStatus.allCases.randomElement()!
+    let user = UserDTO(id: nil, name: "Hermione Granger", email: "Hermione.Granger@hogwarts.edu")
     override func setUpWithError() throws {
-        ticket = TicketDTO(id: nil, number: ticketNumber, summary: summary, detail: detail, size: size, dateCreated: date, status: status, type: type)
+        ticket = TicketDTO(id: nil, number: ticketNumber, summary: summary, detail: detail, size: size, dateCreated: date, status: status, type: type, assignee: user)
     }
 
     func testTicketCreation() throws {
@@ -33,6 +34,7 @@ class TicketTests: XCTestCase {
         XCTAssertEqual(ticket.size, size)
         XCTAssertEqual(ticket.status, status)
         XCTAssertEqual(ticket.dateCreated, date)
+        XCTAssertEqual(ticket.assignee.name, user.name)
     }
     
     static var allTests = [

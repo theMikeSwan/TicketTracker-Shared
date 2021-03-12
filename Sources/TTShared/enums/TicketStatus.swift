@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum TicketStatus: String, Codable {
+public enum TicketStatus: String, Codable, CaseIterable {
     case todo
     case inProgress
     case inTest

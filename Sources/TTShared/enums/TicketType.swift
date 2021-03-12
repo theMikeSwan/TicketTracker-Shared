@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum TicketType: String, Codable {
+public enum TicketType: String, Codable, CaseIterable {
     case theme
     case saga
     case epic
