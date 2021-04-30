@@ -1,0 +1,36 @@
+on: pull_request
+name: PR Check
+jobs:
+  macos_test:
+    name: Test - macOS
+    runs-on: macOS-latest
+    strategy:
+        matrix:
+          destination: ['platform=macOS']
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Build and test
+        run: swift test --enable-test-discovery --enable-code-coverage
+        env:
+         destination: ${{ matrix.destination }}
+
+  ubuntu_test:
+    name: Test - ubuntu
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Swift
+        uses: fwal/setup-swift@v1
+        with:
+          swift-version: "5.3"
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: GitHub Action for SwiftLint (Only files changed in the PR)
+        uses: norio-nomura/action-swiftlint@3.2.1
+        env:
+          DIFF_BASE: ${{ github.base_ref }}
+      - name: Build and test
+        run: swift test --enable-test-discovery --enable-code-coverage
+      - name: Test coverage
+        uses: maxep/spm-lcov-action@0.3.0
+
